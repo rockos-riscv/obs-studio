@@ -251,15 +251,9 @@ failed:
 
 bool gs_texture_is_rect(const gs_texture_t *tex)
 {
-	if (tex->type == GS_TEXTURE_3D)
-		return false;
+	(void) tex;
 
-	if (!is_texture_2d(tex, "gs_texture_is_rect")) {
-		blog(LOG_ERROR, "gs_texture_is_rect (GL) failed");
-		return false;
-	}
-
-	return true;
+	return false;
 }
 
 void *gs_texture_get_obj(gs_texture_t *tex)
