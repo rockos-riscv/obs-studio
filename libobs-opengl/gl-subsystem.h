@@ -94,9 +94,9 @@ static inline GLenum convert_gs_internal_format(enum gs_color_format format)
 	case GS_RGBA:
 		return GL_SRGB8_ALPHA8;
 	case GS_BGRX:
-		return GL_SRGB8;
+		return GL_BGRA_EXT;
 	case GS_BGRA:
-		return GL_SRGB8_ALPHA8;
+		return GL_BGRA_EXT;
 	case GS_R10G10B10A2:
 		return GL_RGB10_A2;
 	case GS_RGBA16:
