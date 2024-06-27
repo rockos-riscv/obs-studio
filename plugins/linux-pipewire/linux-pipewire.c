@@ -19,9 +19,12 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
+#include <dlfcn.h>
+
 #include <obs-module.h>
 #include <obs-nix-platform.h>
 #include <glad/glad.h>
+#include <glad/glad_egl.h>
 
 #include <pipewire/pipewire.h>
 #include "screencast-portal.h"
@@ -37,10 +40,19 @@ MODULE_EXPORT const char *obs_module_description(void)
 	return "PipeWire based sources/outputs";
 }
 
+static void *egl_loader(const char *name)
+{
+	void* ret = eglGetProcAddress(name);
+	if (ret == NULL) {
+		ret = dlsym(RTLD_DEFAULT, name);
+	}
+	return ret;
+}
+
 bool obs_module_load(void)
 {
 	obs_enter_graphics();
-	gladLoadGL();
+	gladLoadGLES2Loader(egl_loader);
 	obs_leave_graphics();
 
 	pw_init(NULL, NULL);

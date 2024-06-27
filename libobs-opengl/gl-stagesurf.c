@@ -107,8 +107,6 @@ static bool can_stage(struct gs_stage_surface *dst, struct gs_texture_2d *src)
 	return true;
 }
 
-#ifdef __APPLE__
-
 /* Apparently for mac, PBOs won't do an asynchronous transfer unless you use
  * FBOs along with glReadPixels, which is really dumb. */
 void device_stage_texture(gs_device_t *device, gs_stagesurf_t *dst,
@@ -157,38 +155,6 @@ failed:
 	UNUSED_PARAMETER(device);
 }
 
-#else
-
-void device_stage_texture(gs_device_t *device, gs_stagesurf_t *dst,
-			  gs_texture_t *src)
-{
-	struct gs_texture_2d *tex2d = (struct gs_texture_2d *)src;
-	if (!can_stage(dst, tex2d))
-		goto failed;
-
-	if (!gl_bind_buffer(GL_PIXEL_PACK_BUFFER, dst->pack_buffer))
-		goto failed;
-	if (!gl_bind_texture(GL_TEXTURE_2D, tex2d->base.texture))
-		goto failed;
-
-	glGetTexImage(GL_TEXTURE_2D, 0, dst->gl_format, dst->gl_type, 0);
-	if (!gl_success("glGetTexImage"))
-		goto failed;
-
-	gl_bind_texture(GL_TEXTURE_2D, 0);
-	gl_bind_buffer(GL_PIXEL_PACK_BUFFER, 0);
-	return;
-
-failed:
-	gl_bind_buffer(GL_PIXEL_PACK_BUFFER, 0);
-	gl_bind_texture(GL_TEXTURE_2D, 0);
-	blog(LOG_ERROR, "device_stage_texture (GL) failed");
-
-	UNUSED_PARAMETER(device);
-}
-
-#endif
-
 uint32_t gs_stagesurface_get_width(const gs_stagesurf_t *stagesurf)
 {
 	return stagesurf->width;
@@ -211,8 +177,8 @@ bool gs_stagesurface_map(gs_stagesurf_t *stagesurf, uint8_t **data,
 	if (!gl_bind_buffer(GL_PIXEL_PACK_BUFFER, stagesurf->pack_buffer))
 		goto fail;
 
-	*data = glMapBuffer(GL_PIXEL_PACK_BUFFER, GL_READ_ONLY);
-	if (!gl_success("glMapBuffer"))
+	*data = glMapBufferOES(GL_PIXEL_PACK_BUFFER, GL_READ_ONLY);
+	if (!gl_success("glMapBufferOES"))
 		goto fail;
 
 	gl_bind_buffer(GL_PIXEL_PACK_BUFFER, 0);
@@ -230,8 +196,8 @@ void gs_stagesurface_unmap(gs_stagesurf_t *stagesurf)
 	if (!gl_bind_buffer(GL_PIXEL_PACK_BUFFER, stagesurf->pack_buffer))
 		return;
 
-	glUnmapBuffer(GL_PIXEL_PACK_BUFFER);
-	gl_success("glUnmapBuffer");
+	glUnmapBufferOES(GL_PIXEL_PACK_BUFFER);
+	gl_success("glUnmapBufferOES");
 
 	gl_bind_buffer(GL_PIXEL_PACK_BUFFER, 0);
 }

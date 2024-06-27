@@ -299,7 +299,7 @@ gs_shader_t *device_pixelshader_create(gs_device_t *device, const char *shader,
 	ptr = shader_create(device, GS_SHADER_PIXEL, shader, file,
 			    error_string);
 	if (!ptr)
-		blog(LOG_ERROR, "device_pixelshader_create (GL) failed");
+		blog(LOG_ERROR, "device_pixelshader_create %s (GL) failed", file);
 	return ptr;
 }
 

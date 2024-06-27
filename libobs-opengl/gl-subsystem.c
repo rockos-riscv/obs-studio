@@ -118,10 +118,7 @@ static void APIENTRY gl_debug_proc(GLenum source, GLenum type, GLuint id,
 
 static void gl_enable_debug()
 {
-	if (GLAD_GL_VERSION_4_3) {
-		glDebugMessageCallback(gl_debug_proc, NULL);
-		gl_enable(GL_DEBUG_OUTPUT);
-	} else if (GLAD_GL_ARB_debug_output) {
+	if (GLAD_GL_ARB_debug_output) {
 		glDebugMessageCallbackARB(gl_debug_proc, NULL);
 	} else {
 		blog(LOG_DEBUG, "Failed to set GL debug callback as it is "
@@ -134,28 +131,45 @@ static void gl_enable_debug() {}
 
 static bool gl_init_extensions(struct gs_device *device)
 {
-	if (!GLAD_GL_VERSION_3_3) {
+	(void) device;
+
+	if (!GLAD_GL_ES_VERSION_3_2) {
 		blog(LOG_ERROR,
-		     "obs-studio requires OpenGL version 3.3 or higher.");
+		     "obs-studio requires OpenGL ES version 3.2 or higher.");
 		return false;
 	}
 
 	gl_enable_debug();
 
-	if (!GLAD_GL_EXT_texture_sRGB_decode) {
-		blog(LOG_ERROR, "OpenGL extension EXT_texture_sRGB_decode "
+	if (!GLAD_GL_EXT_texture_format_BGRA8888) {
+		blog(LOG_ERROR, "OpenGL ES extension EXT_texture_format_BGRA8888 "
 				"is required.");
 		return false;
 	}
 
-	gl_enable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+	if (!GLAD_GL_EXT_texture_sRGB_decode) {
+		blog(LOG_ERROR, "OpenGL ES extension EXT_texture_sRGB_decode "
+				"is required.");
+		return false;
+	}
 
-	if (GLAD_GL_VERSION_4_3 || GLAD_GL_ARB_copy_image)
-		device->copy_type = COPY_TYPE_ARB;
-	else if (GLAD_GL_NV_copy_image)
-		device->copy_type = COPY_TYPE_NV;
-	else
-		device->copy_type = COPY_TYPE_FBO_BLIT;
+	if (!GLAD_GL_EXT_texture_norm16) {
+		blog(LOG_ERROR, "OpenGL ES extension EXT_texture_norm16 "
+				"is required.");
+		return false;
+	}
+
+	if (!GLAD_GL_EXT_disjoint_timer_query) {
+		blog(LOG_ERROR, "OpenGL ES extension EXT_disjoint_timer_query "
+				"is required.");
+		return false;
+	}
+
+	if (!GLAD_GL_OES_mapbuffer) {
+		blog(LOG_ERROR, "OpenGL ES extension OES_mapbuffer "
+				"is required.");
+		return false;
+	}
 
 	return true;
 }
@@ -940,16 +954,16 @@ void device_enable_framebuffer_srgb(gs_device_t *device, bool enable)
 	UNUSED_PARAMETER(device);
 
 	if (enable)
-		gl_enable(GL_FRAMEBUFFER_SRGB);
+		gl_enable(GL_FRAMEBUFFER_SRGB_EXT);
 	else
-		gl_disable(GL_FRAMEBUFFER_SRGB);
+		gl_disable(GL_FRAMEBUFFER_SRGB_EXT);
 }
 
 bool device_framebuffer_srgb_enabled(gs_device_t *device)
 {
 	UNUSED_PARAMETER(device);
 
-	const GLboolean enabled = glIsEnabled(GL_FRAMEBUFFER_SRGB);
+	const GLboolean enabled = glIsEnabled(GL_FRAMEBUFFER_SRGB_EXT);
 	gl_success("glIsEnabled");
 	return enabled == GL_TRUE;
 }
@@ -1179,7 +1193,7 @@ void device_clear(gs_device_t *device, uint32_t clear_flags,
 	}
 
 	if (clear_flags & GS_CLEAR_DEPTH) {
-		glClearDepth(depth);
+		glClearDepthf(depth);
 		gl_flags |= GL_DEPTH_BUFFER_BIT;
 	}
 
@@ -1594,26 +1608,26 @@ void gs_timer_destroy(gs_timer_t *timer)
 
 void gs_timer_begin(gs_timer_t *timer)
 {
-	glQueryCounter(timer->queries[0], GL_TIMESTAMP);
+	glQueryCounterEXT(timer->queries[0], GL_TIMESTAMP_EXT);
 	gl_success("glQueryCounter");
 }
 
 void gs_timer_end(gs_timer_t *timer)
 {
-	glQueryCounter(timer->queries[1], GL_TIMESTAMP);
+	glQueryCounterEXT(timer->queries[1], GL_TIMESTAMP_EXT);
 	gl_success("glQueryCounter");
 }
 
 bool gs_timer_get_data(gs_timer_t *timer, uint64_t *ticks)
 {
-	GLint available = 0;
-	glGetQueryObjectiv(timer->queries[1], GL_QUERY_RESULT_AVAILABLE,
+	GLuint available = 0;
+	glGetQueryObjectuiv(timer->queries[1], GL_QUERY_RESULT_AVAILABLE,
 			   &available);
 
-	GLuint64 begin, end;
-	glGetQueryObjectui64v(timer->queries[0], GL_QUERY_RESULT, &begin);
+	GLuint begin, end;
+	glGetQueryObjectuiv(timer->queries[0], GL_QUERY_RESULT, &begin);
 	gl_success("glGetQueryObjectui64v");
-	glGetQueryObjectui64v(timer->queries[1], GL_QUERY_RESULT, &end);
+	glGetQueryObjectuiv(timer->queries[1], GL_QUERY_RESULT, &end);
 	gl_success("glGetQueryObjectui64v");
 
 	*ticks = end - begin;

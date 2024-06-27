@@ -30,8 +30,6 @@
 struct gl_platform;
 struct gl_windowinfo;
 
-enum copy_type { COPY_TYPE_ARB, COPY_TYPE_NV, COPY_TYPE_FBO_BLIT };
-
 static inline GLenum convert_gs_format(enum gs_color_format format)
 {
 	switch (format) {
@@ -42,9 +40,9 @@ static inline GLenum convert_gs_format(enum gs_color_format format)
 	case GS_RGBA:
 		return GL_RGBA;
 	case GS_BGRX:
-		return GL_BGRA;
+		return GL_BGRA_EXT;
 	case GS_BGRA:
-		return GL_BGRA;
+		return GL_BGRA_EXT;
 	case GS_R10G10B10A2:
 		return GL_RGBA;
 	case GS_RGBA16:
@@ -74,9 +72,9 @@ static inline GLenum convert_gs_format(enum gs_color_format format)
 	case GS_RGBA_UNORM:
 		return GL_RGBA;
 	case GS_BGRX_UNORM:
-		return GL_BGRA;
+		return GL_BGRA_EXT;
 	case GS_BGRA_UNORM:
-		return GL_BGRA;
+		return GL_BGRA_EXT;
 	case GS_RG16:
 		return GL_RG;
 	case GS_UNKNOWN:
@@ -102,9 +100,9 @@ static inline GLenum convert_gs_internal_format(enum gs_color_format format)
 	case GS_R10G10B10A2:
 		return GL_RGB10_A2;
 	case GS_RGBA16:
-		return GL_RGBA16;
+		return GL_RGBA16_EXT;
 	case GS_R16:
-		return GL_R16;
+		return GL_R16_EXT;
 	case GS_RGBA16F:
 		return GL_RGBA16F;
 	case GS_RGBA32F:
@@ -132,7 +130,7 @@ static inline GLenum convert_gs_internal_format(enum gs_color_format format)
 	case GS_BGRA_UNORM:
 		return GL_RGBA;
 	case GS_RG16:
-		return GL_RG16;
+		return GL_RG16_EXT;
 	case GS_UNKNOWN:
 		return 0;
 	}
@@ -388,7 +386,8 @@ static inline GLint convert_address_mode(enum gs_address_mode mode)
 	case GS_ADDRESS_BORDER:
 		return GL_CLAMP_TO_BORDER;
 	case GS_ADDRESS_MIRRORONCE:
-		return GL_MIRROR_CLAMP_EXT;
+		// TODO: GLES does not support this
+		return GL_REPEAT;
 	}
 
 	return GL_REPEAT;
@@ -637,7 +636,6 @@ static inline void fbo_info_destroy(struct fbo_info *fbo)
 
 struct gs_device {
 	struct gl_platform *plat;
-	enum copy_type copy_type;
 
 	GLuint empty_vao;
 	gs_samplerstate_t *raw_load_sampler;

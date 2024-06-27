@@ -17,6 +17,7 @@
 
 #include "gl-egl-common.h"
 
+#include <dlfcn.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -46,10 +47,6 @@ typedef unsigned long drm_handle_t;
 
 #endif
 
-typedef void(APIENTRYP PFNGLEGLIMAGETARGETTEXTURE2DOESPROC)(
-	GLenum target, GLeglImageOES image);
-static PFNGLEGLIMAGETARGETTEXTURE2DOESPROC glEGLImageTargetTexture2DOES;
-
 static bool find_gl_extension(const char *extension)
 {
 	GLint n, i;
@@ -74,10 +71,6 @@ static bool init_egl_image_target_texture_2d_ext(void)
 			blog(LOG_ERROR, "No GL_OES_EGL_image");
 			return false;
 		}
-
-		glEGLImageTargetTexture2DOES =
-			(PFNGLEGLIMAGETARGETTEXTURE2DOESPROC)eglGetProcAddress(
-				"glEGLImageTargetTexture2DOES");
 	}
 
 	if (!glEGLImageTargetTexture2DOES)
@@ -480,4 +473,13 @@ const char *gl_egl_error_to_string(EGLint error_number)
 		return "Unknown error";
 		break;
 	}
+}
+
+void *gl_egl_loader(const char *name)
+{
+	void* ret = eglGetProcAddress(name);
+	if (ret == NULL) {
+		ret = dlsym(RTLD_DEFAULT, name);
+	}
+	return ret;
 }
