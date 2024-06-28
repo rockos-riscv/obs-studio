@@ -107,8 +107,6 @@ static bool can_stage(struct gs_stage_surface *dst, struct gs_texture_2d *src)
 	return true;
 }
 
-/* Apparently for mac, PBOs won't do an asynchronous transfer unless you use
- * FBOs along with glReadPixels, which is really dumb. */
 void device_stage_texture(gs_device_t *device, gs_stagesurf_t *dst,
 			  gs_texture_t *src)
 {
@@ -174,11 +172,16 @@ gs_stagesurface_get_color_format(const gs_stagesurf_t *stagesurf)
 bool gs_stagesurface_map(gs_stagesurf_t *stagesurf, uint8_t **data,
 			 uint32_t *linesize)
 {
+	GLsizeiptr length;
+
+	length = stagesurf->width * stagesurf->height * stagesurf->bytes_per_pixel;
+
 	if (!gl_bind_buffer(GL_PIXEL_PACK_BUFFER, stagesurf->pack_buffer))
 		goto fail;
 
-	*data = glMapBufferOES(GL_PIXEL_PACK_BUFFER, GL_READ_ONLY);
-	if (!gl_success("glMapBufferOES"))
+	*data = glMapBufferRange(GL_PIXEL_PACK_BUFFER, 0, length, GL_MAP_READ_BIT);
+
+	if (!gl_success("glMapBufferRange"))
 		goto fail;
 
 	gl_bind_buffer(GL_PIXEL_PACK_BUFFER, 0);
@@ -196,8 +199,8 @@ void gs_stagesurface_unmap(gs_stagesurf_t *stagesurf)
 	if (!gl_bind_buffer(GL_PIXEL_PACK_BUFFER, stagesurf->pack_buffer))
 		return;
 
-	glUnmapBufferOES(GL_PIXEL_PACK_BUFFER);
-	gl_success("glUnmapBufferOES");
+	glUnmapBuffer(GL_PIXEL_PACK_BUFFER);
+	gl_success("glUnmapBuffer");
 
 	gl_bind_buffer(GL_PIXEL_PACK_BUFFER, 0);
 }
