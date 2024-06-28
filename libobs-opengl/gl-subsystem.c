@@ -154,9 +154,8 @@ static bool gl_init_extensions(struct gs_device *device)
 	}
 
 	if (!GLAD_GL_EXT_texture_norm16) {
-		blog(LOG_ERROR, "OpenGL ES extension EXT_texture_norm16 "
-				"is required.");
-		return false;
+		blog(LOG_WARNING, "OpenGL ES extension EXT_texture_norm16 "
+				  "is recommended but missing, expect functionality loss.");
 	}
 
 	if (!GLAD_GL_EXT_disjoint_timer_query) {
