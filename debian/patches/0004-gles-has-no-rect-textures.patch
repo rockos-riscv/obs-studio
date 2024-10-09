@@ -1,0 +1,35 @@
+From c13178ae4dd3d050b51be44dd1c9af4cc8071892 Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Thu, 27 Jun 2024 20:32:39 +0800
+Subject: [PATCH 4/9] gles has no rect textures
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ libobs-opengl/gl-texture2d.c | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
+
+diff --git a/libobs-opengl/gl-texture2d.c b/libobs-opengl/gl-texture2d.c
+index 46b37b4b9..3575844bc 100644
+--- a/libobs-opengl/gl-texture2d.c
++++ b/libobs-opengl/gl-texture2d.c
+@@ -251,15 +251,9 @@ failed:
+ 
+ bool gs_texture_is_rect(const gs_texture_t *tex)
+ {
+-	if (tex->type == GS_TEXTURE_3D)
+-		return false;
+-
+-	if (!is_texture_2d(tex, "gs_texture_is_rect")) {
+-		blog(LOG_ERROR, "gs_texture_is_rect (GL) failed");
+-		return false;
+-	}
++	(void) tex;
+ 
+-	return true;
++	return false;
+ }
+ 
+ void *gs_texture_get_obj(gs_texture_t *tex)
+-- 
+2.40.1
+

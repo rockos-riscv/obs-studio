@@ -1,0 +1,29 @@
+From e71777cbb5c2079848cc83f0d314caaa7ee3bf13 Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Fri, 28 Jun 2024 11:30:39 +0800
+Subject: [PATCH 7/9] lower EXT_disjoint_timer_query to warning
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ libobs-opengl/gl-subsystem.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/libobs-opengl/gl-subsystem.c b/libobs-opengl/gl-subsystem.c
+index d2419a40b..4dbffca17 100644
+--- a/libobs-opengl/gl-subsystem.c
++++ b/libobs-opengl/gl-subsystem.c
+@@ -159,9 +159,8 @@ static bool gl_init_extensions(struct gs_device *device)
+ 	}
+ 
+ 	if (!GLAD_GL_EXT_disjoint_timer_query) {
+-		blog(LOG_ERROR, "OpenGL ES extension EXT_disjoint_timer_query "
+-				"is required.");
+-		return false;
++		blog(LOG_WARNING, "OpenGL ES extension EXT_disjoint_timer_query "
++				  "is recommended but missing, expect functionality loss.");
+ 	}
+ 
+ 	if (!GLAD_GL_OES_mapbuffer) {
+-- 
+2.40.1
+

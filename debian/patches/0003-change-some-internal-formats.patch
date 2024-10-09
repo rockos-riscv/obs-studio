@@ -1,0 +1,29 @@
+From 46447d9b61175bb80fdeb50d0a11d40919b5f885 Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Thu, 27 Jun 2024 19:03:56 +0800
+Subject: [PATCH 3/9] change some internal formats
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ libobs-opengl/gl-subsystem.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/libobs-opengl/gl-subsystem.h b/libobs-opengl/gl-subsystem.h
+index f2cbf8351..bfd099563 100644
+--- a/libobs-opengl/gl-subsystem.h
++++ b/libobs-opengl/gl-subsystem.h
+@@ -94,9 +94,9 @@ static inline GLenum convert_gs_internal_format(enum gs_color_format format)
+ 	case GS_RGBA:
+ 		return GL_SRGB8_ALPHA8;
+ 	case GS_BGRX:
+-		return GL_SRGB8;
++		return GL_BGRA_EXT;
+ 	case GS_BGRA:
+-		return GL_SRGB8_ALPHA8;
++		return GL_BGRA_EXT;
+ 	case GS_R10G10B10A2:
+ 		return GL_RGB10_A2;
+ 	case GS_RGBA16:
+-- 
+2.40.1
+

@@ -14,3 +14,14 @@ Fix-comparison-if-char-is-unsigned.patch
 0014-disable-dropped-modules.patch
 Use-time64_t-everywhere.patch
 linux-v4l2-Save-device-by-id-or-path.patch
+
+# rockos patch
+0001-switch-to-GLES-and-fix-building.patch
+0002-fix-type-mixture-shaders.patch
+0003-change-some-internal-formats.patch
+0004-gles-has-no-rect-textures.patch
+0005-explicitly-return-1-as-alpha-for-all-conversion-shad.patch
+0006-lower-EXT_texture_norm16-to-warning.patch
+0007-lower-EXT_disjoint_timer_query-to-warning.patch
+0008-fix-glMapBufferOES-when-reading-which-is-not-support.patch
+0009-plugin-add-esmpp-codec.patch
