@@ -1,0 +1,163 @@
+From: =?utf-8?q?=22IOhannes_m_zm=C3=B6lnig_=28Debian/GNU=29=22?=
+ <umlaeute@debian.org>
+Date: Fri, 23 Sep 2022 20:40:26 +0200
+Subject: Fix spelling mistakes
+
+Origin: Debian
+Bug: https://github.com/obsproject/obs-studio/issues/11160
+Last-Update: 2022-09-20
+---
+ cmake/Modules/FindLibVLC.cmake                    | 2 +-
+ deps/w32-pthreads/pthread_attr_getstackaddr.c     | 2 +-
+ plugins/linux-alsa/alsa-input.c                   | 2 +-
+ websocket/src/forms/ConnectInfo.cpp               | 2 +-
+ websocket/src/forms/SettingsDialog.cpp            | 6 +++---
+ websocket/src/websocketserver/WebSocketServer.cpp | 8 ++++----
+ 6 files changed, 11 insertions(+), 11 deletions(-)
+
+--- obs-studio.orig/cmake/Modules/FindLibVLC.cmake
++++ obs-studio/cmake/Modules/FindLibVLC.cmake
+@@ -41,7 +41,7 @@
+     ../bin)
+ 
+ include(FindPackageHandleStandardArgs)
+-# OBS doesnt depend on linking, so we dont include VLC_LIB here as required.
++# OBS doesn't depend on linking, so we dont include VLC_LIB here as required.
+ find_package_handle_standard_args(LibVLC DEFAULT_MSG VLC_INCLUDE_DIR)
+ mark_as_advanced(VLC_INCLUDE_DIR VLC_LIB)
+ 
+--- obs-studio.orig/deps/w32-pthreads/pthread_attr_getstackaddr.c
++++ obs-studio/deps/w32-pthreads/pthread_attr_getstackaddr.c
+@@ -72,7 +72,7 @@
+       *                      address..
+       *
+       * RESULTS
+-      *              0               successfully retreived stack address,
++      *              0               successfully retrieved stack address,
+       *              EINVAL          'attr' is invalid
+       *              ENOSYS          function not supported
+       *
+--- obs-studio.orig/plugins/linux-alsa/alsa-input.c
++++ obs-studio/plugins/linux-alsa/alsa-input.c
+@@ -468,7 +468,7 @@
+ 	}
+ #undef FORMAT_SIZE
+ 	if (!format_found) {
+-		blog(LOG_ERROR, "device doesnt support any OBS formats");
++		blog(LOG_ERROR, "device doesn't support any OBS formats");
+ 		return false;
+ 	}
+ 	snd_pcm_hw_params_set_format(data->handle, hwparams, data->format);
+--- obs-studio.orig/plugins/obs-websocket/src/websocketserver/WebSocketServer.cpp
++++ obs-studio/plugins/obs-websocket/src/websocketserver/WebSocketServer.cpp
+@@ -78,7 +78,7 @@
+ 
+ 	auto conf = GetConfig();
+ 	if (!conf) {
+-		blog(LOG_ERROR, "[WebSocketServer::Start] Unable to retreive config!");
++		blog(LOG_ERROR, "[WebSocketServer::Start] Unable to retrieve config!");
+ 		return;
+ 	}
+ 
+@@ -222,7 +222,7 @@
+ 
+ 	auto conf = GetConfig();
+ 	if (!conf) {
+-		blog(LOG_ERROR, "[WebSocketServer::onOpen] Unable to retreive config!");
++		blog(LOG_ERROR, "[WebSocketServer::onOpen] Unable to retrieve config!");
+ 		return;
+ 	}
+ 
+@@ -330,7 +330,7 @@
+ 	// Get config for tray notification
+ 	auto conf = GetConfig();
+ 	if (!conf) {
+-		blog(LOG_ERROR, "[WebSocketServer::onClose] Unable to retreive config!");
++		blog(LOG_ERROR, "[WebSocketServer::onClose] Unable to retrieve config!");
+ 		return;
+ 	}
+ 
+--- obs-studio.orig/plugins/obs-outputs/ftl-sdk/libftl/ftl-sdk.c
++++ obs-studio/plugins/obs-outputs/ftl-sdk/libftl/ftl-sdk.c
+@@ -171,7 +171,7 @@
+ 
+   speed_test_t results;
+ 
+-  FTL_LOG(ftl, FTL_LOG_WARN, "%s() is depricated, please use ftl_ingest_speed_test_ex()\n", __FUNCTION__);
++  FTL_LOG(ftl, FTL_LOG_WARN, "%s() is deprecated, please use ftl_ingest_speed_test_ex()\n", __FUNCTION__);
+ 
+   if (media_speed_test(ftl, speed_kbps, duration_ms, &results) == FTL_SUCCESS) {
+     return results.peak_kbps;
+--- obs-studio.orig/plugins/obs-outputs/ftl-sdk/libftl/handshake.c
++++ obs-studio/plugins/obs-outputs/ftl-sdk/libftl/handshake.c
+@@ -554,7 +554,7 @@
+       FTL_LOG(ftl, FTL_LOG_ERROR, "channel is not authorized for FTL");
+       return FTL_UNAUTHORIZED;
+     case FTL_INGEST_RESP_OLD_VERSION:
+-      FTL_LOG(ftl, FTL_LOG_ERROR, "This version of the FTLSDK is depricated");
++      FTL_LOG(ftl, FTL_LOG_ERROR, "This version of the FTLSDK is deprecated");
+       return FTL_OLD_VERSION;
+     case FTL_INGEST_RESP_AUDIO_SSRC_COLLISION:
+       FTL_LOG(ftl, FTL_LOG_ERROR, "audio SSRC collision from this IP address. Please change your audio SSRC to an unused value");
+--- obs-studio.orig/plugins/obs-outputs/ftl-sdk/libftl/media.c
++++ obs-studio/plugins/obs-outputs/ftl-sdk/libftl/media.c
+@@ -1926,7 +1926,7 @@
+       {
+         if (check_bitrate_for_stability)
+         {
+-          FTL_LOG(params->handle->priv, FTL_LOG_INFO, "Stable Bitrate acheived");
++          FTL_LOG(params->handle->priv, FTL_LOG_INFO, "Stable Bitrate achieved");
+ 
+           check_bitrate_for_stability = FALSE;
+           if (current_encoding_bitrate == params->max_encoding_bitrate)
+--- obs-studio.orig/plugins/obs-outputs/librtmp/rtmp.h
++++ obs-studio/plugins/obs-outputs/librtmp/rtmp.h
+@@ -36,7 +36,7 @@
+ 
+ #ifdef _WIN32
+ #ifdef _MSC_VER
+-#pragma warning(disable:4996) //depricated warnings
++#pragma warning(disable:4996) //deprecated warnings
+ #pragma warning(disable:4244) //64bit defensive mechanism, fixed the ones that mattered
+ #endif
+ #include <winsock2.h>
+--- obs-studio.orig/plugins/obs-websocket/src/forms/ConnectInfo.cpp
++++ obs-studio/plugins/obs-websocket/src/forms/ConnectInfo.cpp
+@@ -51,7 +51,7 @@
+ {
+ 	auto conf = GetConfig();
+ 	if (!conf) {
+-		blog(LOG_ERROR, "[ConnectInfo::showEvent] Unable to retreive config!");
++		blog(LOG_ERROR, "[ConnectInfo::showEvent] Unable to retrieve config!");
+ 		return;
+ 	}
+ 
+--- obs-studio.orig/plugins/obs-websocket/src/forms/SettingsDialog.cpp
++++ obs-studio/plugins/obs-websocket/src/forms/SettingsDialog.cpp
+@@ -74,7 +74,7 @@
+ {
+ 	auto conf = GetConfig();
+ 	if (!conf) {
+-		blog(LOG_ERROR, "[SettingsDialog::showEvent] Unable to retreive config!");
++		blog(LOG_ERROR, "[SettingsDialog::showEvent] Unable to retrieve config!");
+ 		return;
+ 	}
+ 
+@@ -114,7 +114,7 @@
+ {
+ 	auto conf = GetConfig();
+ 	if (!conf) {
+-		blog(LOG_ERROR, "[SettingsDialog::RefreshData] Unable to retreive config!");
++		blog(LOG_ERROR, "[SettingsDialog::RefreshData] Unable to retrieve config!");
+ 		return;
+ 	}
+ 
+@@ -144,7 +144,7 @@
+ {
+ 	auto conf = GetConfig();
+ 	if (!conf) {
+-		blog(LOG_ERROR, "[SettingsDialog::SaveFormData] Unable to retreive config!");
++		blog(LOG_ERROR, "[SettingsDialog::SaveFormData] Unable to retrieve config!");
+ 		return;
+ 	}
+ 

@@ -1,0 +1,10 @@
+usr/lib/*/obs-plugins/*decklink*.so
+usr/lib/*/obs-plugins/linux-alsa.so
+usr/lib/*/obs-plugins/linux-jack.so
+usr/lib/*/obs-plugins/linux-pipewire.so
+usr/lib/*/obs-plugins/vlc-video.so
+usr/share/obs/obs-plugins/*decklink*
+usr/share/obs/obs-plugins/linux-alsa
+usr/share/obs/obs-plugins/linux-jack
+usr/share/obs/obs-plugins/linux-pipewire
+usr/share/obs/obs-plugins/vlc-video

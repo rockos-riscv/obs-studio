@@ -1,0 +1,18 @@
+From: Sebastian Ramacher <sramacher@debian.org>
+Date: Sat, 3 Sep 2022 19:30:13 +0200
+Subject: Do not build unused blake2 dependency
+
+---
+ deps/CMakeLists.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+--- obs-studio.orig/deps/CMakeLists.txt
++++ obs-studio/deps/CMakeLists.txt
+@@ -3,7 +3,6 @@
+   add_subdirectory(w32-pthreads)
+ endif()
+ 
+-add_subdirectory(blake2)
+ add_subdirectory(file-updater)
+ add_subdirectory(glad)
+ add_subdirectory(happy-eyeballs)

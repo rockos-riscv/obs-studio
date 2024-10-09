@@ -1,0 +1,25 @@
+From: Sebastian Ramacher <sramacher@debian.org>
+Date: Wed, 19 Apr 2017 21:45:52 +0200
+Subject: Use path in /usr/lib
+
+---
+ plugins/obs-ffmpeg/obs-ffmpeg-mux.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/plugins/obs-ffmpeg/obs-ffmpeg-mux.c b/plugins/obs-ffmpeg/obs-ffmpeg-mux.c
+index 111b483..0bb7bd4 100644
+--- a/plugins/obs-ffmpeg/obs-ffmpeg-mux.c
++++ b/plugins/obs-ffmpeg/obs-ffmpeg-mux.c
+@@ -302,7 +302,12 @@ static void build_command_line(struct ffmpeg_muxer *stream,
+ 		num_tracks++;
+ 	}
+ 
++#ifdef FFMPEG_MUX_FIXED
++	char *exe = bstrdup(FFMPEG_MUX_FIXED);
++#else
+ 	char *exe = os_get_executable_path_ptr(FFMPEG_MUX);
++#endif
++
+ 	*args = os_process_args_create(exe);
+ 	bfree(exe);
+ 

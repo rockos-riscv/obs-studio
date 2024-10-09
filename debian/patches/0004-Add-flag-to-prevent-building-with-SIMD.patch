@@ -1,0 +1,28 @@
+From: Sebastian Ramacher <sramacher@debian.org>
+Date: Wed, 25 Mar 2020 21:42:09 +0100
+Subject: Add flag to prevent building with SIMD
+
+---
+ cmake/Modules/CompilerConfig.cmake    | 3 +++
+ cmake/external/ObsPluginHelpers.cmake | 3 +++
+ 2 files changed, 6 insertions(+)
+
+--- obs-studio.orig/cmake/Modules/CompilerConfig.cmake
++++ obs-studio/cmake/Modules/CompilerConfig.cmake
+@@ -151,6 +151,8 @@
+   string(TOLOWER ${CMAKE_SYSTEM_PROCESSOR} LOWERCASE_CMAKE_SYSTEM_PROCESSOR)
+ endif()
+ 
++option(ENABLE_SIMD "Enable guessing of SIMD flags" ON)
++if(ENABLE_SIMD)
+ if(LOWERCASE_CMAKE_SYSTEM_PROCESSOR MATCHES "(i[3-6]86|x86|x64|x86_64|amd64|e2k)")
+   if(NOT MSVC AND NOT CMAKE_OSX_ARCHITECTURES STREQUAL "arm64")
+     set(ARCH_SIMD_FLAGS -mmmx -msse -msse2)
+@@ -167,6 +169,7 @@
+         "$<$<AND:$<COMPILE_LANGUAGE:CXX>,$<BOOL:CXX_COMPILER_SUPPORTS_OPENMP_SIMD>>:-fopenmp-simd>")
+   endif()
+ endif()
++endif(ENABLE_SIMD)
+ 
+ if(LOWERCASE_CMAKE_SYSTEM_PROCESSOR MATCHES "e2k")
+   foreach(

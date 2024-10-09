@@ -1,0 +1,626 @@
+obs-studio (30.2.3+dfsg-2) unstable; urgency=medium
+
+  * Team upload.
+  * Revert "Drop patches obsoleted by upstream"
+  * Fix obs-ffmpeg-mux patch (Closes: #1079732)
+
+ -- Jochen Sprickerhof <jspricke@debian.org>  Thu, 29 Aug 2024 07:56:20 +0200
+
+obs-studio (30.2.3+dfsg-1) unstable; urgency=medium
+
+  * New upstream version 30.2.3+dfsg
+    (Closes: #1072439, #1075327)
+
+  [ Sebastian Ramacher ]
+  * Remove myself from Uploaders
+
+  [ IOhannes m zmölnig (Debian/GNU) ]
+  * Update patches
+    + Drop patches obsoleted by upstream
+    + Refresh patches
+    + Update patches
+  * Install obs-websocket CMake snippets
+  * Explicitly disable obs-browser for now (missing CEF)
+  * Do not treat warnings as errors
+  * Add uthash-dev and pkgconf as B-D
+  * Update libobs0t64.symbols
+  * Update d/watch to use upstream's handmade source package
+    + Drop extra 'websocket' component
+    + Drop 'websocket' component magic in d/rules and d/clean
+  * Update copyright information
+    + Update d/copyright
+    + Remove obsolete Files-Excluded stanzas
+    + Re-generate d/copyright_hints
+  * Update lintian-overrides
+  * Drop copyright for excluded uthash
+  * fix more spelling errors:
+  * Forward spelling error patch
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Tue, 20 Aug 2024 16:17:53 +0200
+
+obs-studio (30.1.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream version 30.1.2+dfsg
+    + Refresh patches
+  * Fix unsigned char comparison patch (Closes: #1051418)
+  * Update d/libobs0t64.symbols
+  * Add missing entries to d/changelog for 30.0.2+dfsg-3 
+  * Update d/copyright
+    + Bump d/copyright dates
+    + Re-generate d/copyright_hints
+  * Bump standards version to 4.7.0
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Thu, 02 May 2024 00:24:12 +0200
+
+obs-studio (30.0.2+dfsg-3) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Benjamin Drung ]
+  * Fix build on 32bit time64_t archs. Thanks to Gianfranco Costamagna.
+    (Closes: #1067494)
+  * linux-v4l2: Save device by ID or path to make webcam ordering persistent
+    (to support having multiple in the system). Fixes upstream bug 3003.
+  * Add simple autopkgtest that just calls obs --help and --version
+
+  [ IOhannes m zmölnig (Debian/GNU) ]
+  * Drop debian/.gitignore (as it hides leftover files)
+  * Apply 'wrap-and-sort -ast'
+
+ -- Benjamin Drung <bdrung@debian.org>  Sun, 31 Mar 2024 15:13:19 +0200
+
+obs-studio (30.0.2+dfsg-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Rename libraries for 64-bit time_t transition.  Closes: #1063224
+
+ -- Benjamin Drung <bdrung@debian.org>  Thu, 29 Feb 2024 01:39:16 +0000
+
+obs-studio (30.0.2+dfsg-2) unstable; urgency=medium
+
+  * d/rules: use $() for make variables
+    (Closes: #1059799)
+  * Add Unconditional B-D on luajit
+    (dropping support for ppc64el)
+    (Closes: #1051931)
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Tue, 09 Jan 2024 09:21:26 +0100
+
+obs-studio (30.0.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream version 30.0.2+dfsg
+    + Refresh patches
+
+  * Add patch to disable building of removed modules
+  * Features:
+    + Disable WebRTC support for now
+    + Enable pipewire support
+  * Update B-Ds based on upstream documentation
+    * Switch to Qt6
+    * Mark libvpl as only available on amd64
+  * Enable unit-tests
+    + Ensure that testsuite sees the local libraries
+    + Mark test-files as not-installed
+  * Switch buildsystem to Ninja
+  * Don't treat deprecated-declarations as errors
+    (Closes: #1057587)
+  * Update symbols file for libobs0
+    + Add new symbols
+    + Declare BD-Package
+  * Make blhc ignore some false positives
+  * Fix d/watch
+  * Update copyright information
+    + Update d/copyright
+    + Exclude obs-studio.ico from licensecheck
+    + Re-generate d/copyright
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Fri, 29 Dec 2023 18:29:25 +0100
+
+obs-studio (29.1.3+dfsg-2) unstable; urgency=medium
+
+  * Generalize the prevention of SIMD-builds
+    + Disable SIMD on i386 (and ignore up psABI warnings)
+      (Fixes FTBFS on i386)
+  * Add patch to fix out-of-type-limits comparison if (char)==(unsigned char)
+    (Fixes FTBFS on armel, armhf, ppc64el, s390x)
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Wed, 02 Aug 2023 13:39:19 +0200
+
+obs-studio (29.1.3+dfsg-1) unstable; urgency=medium
+
+  * New upstream version 29.1.3+dfsg
+    + Refresh patches
+  * Update simde patch
+  * Fix FTBFS due to overzealous warnings
+  * Fix format-error FTBFS on 32bit archs
+  * Add patch to prevent underlinking
+  * Globally apply "-fvisibility=hidden"
+    + Drop symbols removed with visibility=hidden
+    + Add new symbols
+  * Add lintian-overrides for half-excluded files
+  * Update d/copyright
+    + Refresh licensecheck exclusion rules
+    + Re-generate d/copyright_hints
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Mon, 31 Jul 2023 14:10:09 +0200
+
+obs-studio (29.0.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream version 29.0.2+dfsg
+  * Re-generated d/copyright_hints
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Sat, 11 Feb 2023 15:55:47 +0100
+
+obs-studio (29.0.0+dfsg1-2) unstable; urgency=medium
+
+  * B-D on libopengl-dev rather than libgl-dev
+  * Restructure d/rules with execute_(before,after)_dh_*
+  * Filter out '.git*' files and directories (for future imports)
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Thu, 26 Jan 2023 11:08:02 +0100
+
+obs-studio (29.0.0+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 29.0.0+dfsg1
+    (Closes: #1023964)
+
+  [ Debian Janitor ]
+  * Apply multi-arch hints. + obs-plugins: Add Multi-Arch: same.
+
+  [ IOhannes m zmölnig (Debian/GNU) ]
+  * Refresh patches with 'gbp pq'
+  * Suggest 'pkexec' instead of 'policykit-1' (Closes: #1025594)
+  * Replace obsolete B-Ds with their modern counterparts
+  * Add 'libva-dev' to the B-Ds
+  * Update d/libobs0.symbols
+  * Add myself to uploaders
+  * Update d/copyright
+    + Modernize 'licensecheck' target
+    + Re-generate d/copyright_hints
+  * Update d/watch
+    + Properly handle pre-releases
+    + Drop repack-count (for future imports)
+  * Apply 'wrap-and-sort -ast'
+  * Bump standards version to 4.6.2
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Wed, 25 Jan 2023 17:07:16 +0100
+
+obs-studio (28.0.1+dfsg1-3) unstable; urgency=medium
+
+  * debian/rules: Disable lua plugin on ppc64el
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Fri, 23 Sep 2022 23:25:15 +0200
+
+obs-studio (28.0.1+dfsg1-2) unstable; urgency=medium
+
+  * debian/patches: Refresh patch to drop ISA flags
+  * debian/control: Breaks+Replaces obs-websocket (Closes: #1020498)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Fri, 23 Sep 2022 20:49:03 +0200
+
+obs-studio (28.0.1+dfsg1-1) unstable; urgency=medium
+
+  * Team upload.
+
+  * New upstream version 28.0.1+dfsg1
+    (Closes: #1017166)
+
+  [ Sebastian Ramacher ]
+  * New upstream version 28.0.0+dfsg1
+    * Refresh patches
+  * Remove cmake/bundle
+  * Exclude mac plugins and a copy of AMF
+  * Add BD on libffmpeg-nvenc-dev
+  * Add BD on libxcb-composite0-dev
+  * Disable browser check
+
+  [ IOhannes m zmölnig (Debian/GNU) ]
+  * Refresh patches (again)
+  * Additional networking related B-Ds
+  * Drop the '+dfsg' from the VERSION_OVERRIDE
+  * Set build options
+    + Explicitly enable JACK
+    + Explicitly disable sndio modules (Closes: #993458)
+    + Disable AJA
+  * Use reproducible build-date.
+    Thanks to Vagrant Cascadian <vagrant@reproducible-builds.org>
+    (Closes: #975504)
+  * Add another patch to make build reproducible
+  * Add patch to fix spelling errors
+  * Add patch to build obs-websocket against system libraries
+  * Use 'target_compile_options()' to inject "-fvisibility=hidden"
+  * Fix install paths to plugins
+  * Install pipewire plugin
+  * Make sure that PEM files are non-executable
+  * Use d/clean to cleanup temporary files
+  * Do not embed RPATH/RUNPATH into binaries
+  * Update d/*.symbols
+  * Update description of obs-plugins (Closes: #993600)
+  * d/watch
+    - Switch to new github location
+    - Import Multi-Upstream-Tarballs
+  * Add verbatim copy of Nayuki's Qr-Code-Generator
+  * Add salsa-ci configuration
+  * Apply 'wrap-and-sort -ast'
+  * Update d/copyright
+    * Drop superfluous file-patterns
+    * Add 'licensecheck' target
+    * Generate d/copyright_hints
+  * Bump standards version to 4.6.1
+
+ -- IOhannes m zmölnig (Debian/GNU) <umlaeute@debian.org>  Tue, 20 Sep 2022 23:44:10 +0200
+
+obs-studio (27.2.4+dfsg1-2) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Remove constraints unnecessary since buster
+
+  [ Sebastian Ramacher ]
+  * debian/control: Disable luajit on ppc64el (Closes: #1011304)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sat, 21 May 2022 17:27:16 +0200
+
+obs-studio (27.2.4+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 27.2.4+dfsg1
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 24 Apr 2022 23:36:39 +0200
+
+obs-studio (27.2.3+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 27.2.3+dfsg1
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 06 Mar 2022 18:50:24 +0100
+
+obs-studio (27.2.1+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 27.2.1+dfsg1
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 27 Feb 2022 10:37:48 +0100
+
+obs-studio (27.2.0+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 27.2.0+dfsg1
+    - Fix build with ffmpeg 5.0 (Closes: #1004639)
+  * debian/control: Add Build-Depends on libpci-dev
+  * debian/patches: Refresh patches
+  * debian/libobs0.symbols: Add new symbols
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 15 Feb 2022 22:44:50 +0100
+
+obs-studio (27.1.3+dfsg1-2) unstable; urgency=medium
+
+  * debian/patches: Apply upstream patch to have Python symbols available
+    (Closes: #958966)
+  * debian/control: Add missing dependency on libx11-dev
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 23 Nov 2021 00:03:42 +0100
+
+obs-studio (27.1.3+dfsg1-1) unstable; urgency=medium
+
+  [ Jenkins ]
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+
+  [ Sebastian Ramacher ]
+  * New upstream version 27.1.3
+  * debian/control:
+    - Bump Standards-Version
+    - Add B-D on libdrm-dev
+  * debian/patches: Refresh patches
+  * debian/libobs0.symbols: Add new symbols
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 10 Oct 2021 22:57:48 +0200
+
+obs-studio (27.0.1+dfsg1-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/rules:
+    - Disable browser and vst
+    - Remove BUILD_CAPTIONS
+  * debian/control:
+    - Add new build dependencies libpipewire-0.3-dev,
+      libwayland-dev, and qtbase5-private-dev
+    - Remove obsolete Breaks+Replaces
+  * debian/libobs0.install: Add new symbols
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 08 Aug 2021 18:26:25 +0200
+
+obs-studio (26.1.2+dfsg1-2) unstable; urgency=medium
+
+  * debian/control: Make libobs-dev depend on libsimde-dev (Closes: #980171)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 01 Jun 2021 22:05:24 +0200
+
+obs-studio (26.1.2+dfsg1-1) unstable; urgency=medium
+
+  [ gregor herrmann ]
+  * debian/patches: Help finding modinfo, Closes: #977928
+  * debian/README.Debian: Describe options to configure Virtual Camera output.
+
+  [ Sebastian Ramacher ]
+  * New upstream version releases
+  * debian/patches: Refresh patches
+  * debian/control: Add policykit-1 to Suggests
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 10 Jan 2021 20:13:04 +0100
+
+obs-studio (26.1.0+dfsg1-1) unstable; urgency=medium
+
+  * New upstream release
+    - Add virtual camera output (Closes: #960342)
+  * debian/control:
+    - Bump Standards-Version
+    - Suggest v4l2loopback-dkms for virtal camera output
+  * debian/obs-plugins.install: Install decklink-captions plugin
+  * debian/libobs0.symbols: Add new symbols
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 22 Dec 2020 19:14:16 +0100
+
+obs-studio (26.0.2+dfsg1-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 12 Oct 2020 22:29:26 +0200
+
+obs-studio (26.0.0+dfsg1-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/copyright:
+    - Filter scripts for building the macOS app
+    - Don't strip libcaption
+    - Document libcaption license
+  * debian/rules: Build with caption support (Closes: #971405)
+  * debian/patches: Refresh
+  * debian/libobs0.symbols: Add new symbols
+  * debian/: Only keep extra plugins in obs-plugins
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Thu, 01 Oct 2020 23:28:53 +0200
+
+obs-studio (25.0.8+dfsg1-3) unstable; urgency=medium
+
+  * debian/patches: Apply upstream patch to fix build with GCC 10
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 27 Jul 2020 12:49:22 +0200
+
+obs-studio (25.0.8+dfsg1-2) unstable; urgency=medium
+
+  [ Michael R. Crusoe ]
+  * debian/patches/0009-use-libsimde-dev.patch: update to remove last
+    references to the bundled simde paths (Closes: #961779)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Fri, 29 May 2020 11:41:57 +0200
+
+obs-studio (25.0.8+dfsg1-1) unstable; urgency=medium
+
+  [ Michael R. Crusoe ]
+  * debian/patches:
+     - Use the SIMD Everywhere headers from libsimde-dev, instead of upstream's
+       code copy
+  * debian/control
+     - Build-dep on libsimde-dev
+     - Add "Built-Using: ${simde:Built-Using}" to libobs0 & obs-plugins to
+       document the version of libsimde-dev used, as required to keep that
+       version in the Debian archive, which is needed to fulfill the GPL
+       (Closes: 959719)
+  * debian/copyright:
+     - exclude libobs/util/simde/* as we will use the files from libsimde-dev
+  * debian/rules:
+     - Include the recommended flags for SIMDe, especially important for
+       non-X86 architectures
+
+  [ Sebastian Ramacher ]
+  * New upstream version release
+  * debian/libobs0.symbols: Add new symbols
+  * debian/control: Bump debhelper compat to 13
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Wed, 27 May 2020 22:57:51 +0200
+
+obs-studio (25.0.3+dfsg1-2) unstable; urgency=medium
+
+  * Upload to unstable
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sat, 28 Mar 2020 12:16:12 +0100
+
+obs-studio (25.0.3+dfsg1-1) experimental; urgency=medium
+
+  * New upstream release
+    - Supports building on non-SSE2 platforms (Closes: #953520)
+  * debian/copyright:
+    - Document simde
+    - Remove unused paragraphs
+  * debian/patches:
+    - Refresh patches
+    - Do not enable SSE2 on i386
+    - Remove executable bit from json files
+   * debian/control:
+    - Build on all architectures
+    - Bump Standards-Version
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Wed, 25 Mar 2020 21:58:29 +0100
+
+obs-studio (24.0.6+dfsg1-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/control: Add missing B-Ds after changes in mesa
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 24 Dec 2019 10:21:01 +0100
+
+obs-studio (24.0.5+dfsg1-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/rules: Also byte-compile Python scripts in obs-studio
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 10 Dec 2019 20:38:14 +0100
+
+obs-studio (24.0.3+dfsg1-2) unstable; urgency=medium
+
+  [ Olivier Humbert ]
+  * Update copyright (http -> https)
+
+  [ Sebastian Ramacher ]
+  * debian/control: Set RRR: no
+  * debian/:
+    - Byte-compile Python scripts (Closes: #943858)
+    - Compress SVGs with scour
+
+  [ Kurt Kartaltepe ]
+  * Set version number (Closes: #940712)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 18 Nov 2019 20:45:56 +0100
+
+obs-studio (24.0.3+dfsg1-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/control: Bump Standards-Version
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 13 Oct 2019 22:00:22 +0200
+
+obs-studio (24.0.1+dfsg1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/libobs0.symbols: Add new symbols
+  * debian/libobs-dev.install: Install pkgconfig file
+  * debian/control: Switch to python3-docutils
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 22 Sep 2019 23:42:04 +0200
+
+obs-studio (23.2.1+dfsg1-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Use debhelper-compat instead of debian/compat
+
+  [ Simon Chopin ]
+  * New upstream version 23.2.1+dfsg1
+  * Refresh the license display patches
+  * Refresh the use-path-in-usr-lib patch and the exec name and location
+  * Add libqt5svg5-dev as new build dep
+
+  [ Sebastian Ramacher ]
+  * debian/control:
+    - Bump Standards-Version.
+    - Bump debhelper compat to 12.
+    - B-D on libmbedtls-dev to support rmtps. (LP: #1832127)
+  * debian/libobs0.symbols: Update symbols.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 06 Aug 2019 00:05:57 +0200
+
+obs-studio (22.0.3+dfsg1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/patches: Refresh patches.
+  * debian/control: Update Standards-Version.
+  * debian/rules: Disable updater with the correct flag.
+  * debian/: Enable scripting support. (Closes: #904480)
+  * debian/libobs0.symbols: Update symbols.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 16 Dec 2018 18:14:30 +0100
+
+obs-studio (21.1.2+dfsg1-1) unstable; urgency=medium
+
+  [ Felipe Sateler ]
+  * Change maintainer address to debian-multimedia@lists.debian.org
+
+  [ Sebastian Ramacher ]
+  * New upstream release.
+  * debian/patches: Refresh patches.
+  * debian/control: Bump Standards-Version.
+  * debian/libobs0.symbols: Add new symbols.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 29 May 2018 21:19:37 +0200
+
+obs-studio (21.0.2+dfsg1-1) unstable; urgency=medium
+
+  [ Sebastian Ramacher ]
+  * New upstream release.
+    - Fix building with ffmpeg 3.5. (Closes: #888361)
+  * debian/patches:
+    - Refresh patches.
+    - Do not display license on first startup. (Closes: #867756)
+  * debian/control: Bump Standards-Version.
+  * debian/: Bump debhelper compat to 11.
+  * debian/libobs0.symbols: Update symbols.
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org.
+  * d/copyright: Use https protocol in Format field.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 19 Feb 2018 22:35:33 +0100
+
+obs-studio (19.0.3+dfsg1-1) unstable; urgency=medium
+
+  * Upload to unstable.
+  * New upstream release.
+  * debian/control:
+    - Remove Build-Conflicts. No longer needed.
+    - Bump Standards-Version.
+  * debian/libobs0.symbols: Add new symbols.
+  * debian/copyright: Update using decopy.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Thu, 29 Jun 2017 21:18:29 +0200
+
+obs-studio (18.0.1+dfsg1-2) experimental; urgency=medium
+
+  * debian/rules: Add B-C for Qt >= 5.8 to work around #858762.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 23 Apr 2017 15:51:32 +0200
+
+obs-studio (18.0.1+dfsg1-1) experimental; urgency=medium
+
+  * New upstream release. (Closes: #854055)
+  * debian/copyright:
+    - Update using decopy.
+    - Exclude unused embedded code copies.
+  * debian/{control,compat,rules}: Bump debhelper compat to 10.
+  * debian/libobs0.symbol: Add new symbols.
+  * debian/patches: Refresh.
+  * debian/rules: Disable update and libcaption.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Wed, 19 Apr 2017 23:59:37 +0200
+
+obs-studio (0.15.4+dfsg1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/control:
+    - Add libspeexdsp-dev and libvlc-dev to B-D.
+    - Add vlc to obs-plugin's Recommends.
+  * debian/libobs0.symbols: Update symbols.
+  * debian/copyright: Update copyright information
+  * debian/{rules,obs.rst}: Add manpage.
+  * debian/{rules,control}: Tighten inter-package dependencies.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 28 Aug 2016 16:07:28 +0200
+
+obs-studio (0.14.2+dfsg1-3) unstable; urgency=medium
+
+  * debian/control. Also restrict obs-plugins to any-amd64.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sat, 02 Jul 2016 08:39:10 +0200
+
+obs-studio (0.14.2+dfsg1-2) unstable; urgency=medium
+
+  * debian/control: Restrict Architecture to any-amd64.
+  * debian/copyright: Document Blackmagic Design copyright.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Fri, 01 Jul 2016 19:23:10 +0200
+
+obs-studio (0.14.2+dfsg1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/libobs0.symbols: Add new symbols.
+  * debian/control:
+    - Bump Standards-Version.
+    - Add libasound2-dev to Build-Depends.
+    - Mention in Description minimal OpenGL requirement.
+  * debian/copyright:
+    - Update Files-Excluded for new upstream version.
+    - Add license information for new files.
+    - Fix license information for libff and w32-pthreads.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 24 May 2016 22:56:30 +0200
+
+obs-studio (0.13.2+dfsg1-1) unstable; urgency=medium
+
+  * Initial release (Closes: #774744)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Thu, 25 Feb 2016 20:42:33 +0100

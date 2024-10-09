@@ -1,0 +1,22 @@
+From: =?utf-8?q?=22IOhannes_m_zm=C3=B6lnig_=28Debian/GNU=29=22?=
+ <umlaeute@debian.org>
+Date: Mon, 31 Jul 2023 13:05:43 +0200
+Subject: Prevent underlinking
+
+---
+ libobs/CMakeLists.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+--- obs-studio.orig/libobs/CMakeLists.txt
++++ obs-studio/libobs/CMakeLists.txt
+@@ -239,8 +239,10 @@
+           FFmpeg::avutil
+           FFmpeg::swscale
+           FFmpeg::swresample
++          glib-2.0
+           jansson::jansson
+           Uthash::Uthash
++          m
+           ZLIB::ZLIB
+   PUBLIC Threads::Threads)
+ 

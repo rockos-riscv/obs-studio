@@ -1,0 +1,22 @@
+From: =?utf-8?q?=22IOhannes_m_zm=C3=B6lnig_=28Debian/GNU=29=22?=
+ <umlaeute@debian.org>
+Date: Wed, 2 Aug 2023 11:31:35 +0200
+Subject: Fix comparision if (char) is unsigned
+
+Bug: https://github.com/obsproject/obs-studio/pull/9184
+---
+ deps/libcaption/src/utf8.c | 2 +-
+ libobs/util/utf8.c         | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+--- obs-studio.orig/libobs/util/utf8.c
++++ obs-studio/libobs/util/utf8.c
+@@ -289,7 +289,7 @@
+ 		if (*w == _BOM && (flags & UTF8_SKIP_BOM) != 0)
+ 			continue;
+ 
+-		if (*w < 0) {
++		if ((long int)*w < 0) {
+ 			if ((flags & UTF8_IGNORE_ERROR) == 0)
+ 				return 0;
+ 			continue;

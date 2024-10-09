@@ -1,0 +1,20 @@
+From: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Date: Mon, 31 Jul 2023 13:04:55 +0200
+Subject: Hide-internal-symbols
+
+---
+ libobs/obs.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+--- obs-studio.orig/libobs/obs.c
++++ obs-studio/libobs/obs.c
+@@ -21,7 +21,9 @@
+ #include "callback/calldata.h"
+ 
+ #include "obs.h"
++#pragma GCC visibility push(default)
+ #include "obs-internal.h"
++#pragma GCC visibility pop
+ 
+ struct obs_core *obs = NULL;
+ 

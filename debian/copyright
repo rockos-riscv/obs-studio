@@ -1,0 +1,361 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: obs-studio
+Source: https://obsproject.com
+Files-Excluded:
+ cmake/bundle
+ deps/blake2/*
+ deps/w32-pthreads/need_errno.h
+ libobs/util/simde/*
+ plugins/mac-*
+ plugins/obs-qsv11/*
+ plugins/win-*
+
+Files: *
+Copyright: 2013-2023, Lain Bailey <lain@obsproject.com>
+           2017, Joel Bethke <joel.bethke@gmail.com>
+           2015, Andrew Skinner <obs@theandyroid.com>
+           2014, Leonhard Oelke <leonhard@in-verted.de>
+           2017, Fabio Madia <admshao@gmail.com>
+           2017, Quinn Damerell <qdamere@microsoft.com>
+           2013-2024, The OBS Developers (see AUTHORS for a full list)
+License: GPL-2+
+
+Files: deps/ipc-util/ipc-util/*
+       deps/media-playback/media-playback/*
+       libobs/callback/*
+       libobs/data/deinterlace_base.effect
+       libobs/data/deinterlace_blend.effect
+       libobs/data/deinterlace_blend_2x.effect
+       libobs/data/deinterlace_discard.effect
+       libobs/data/deinterlace_discard_2x.effect
+       libobs/data/deinterlace_linear.effect
+       libobs/data/deinterlace_linear_2x.effect
+       libobs/data/deinterlace_yadif.effect
+       libobs/data/deinterlace_yadif_2x.effect
+       libobs/util/*
+       plugins/obs-ffmpeg/ffmpeg-mux/ffmpeg-mux.c
+       plugins/obs-ffmpeg/ffmpeg-mux/ffmpeg-mux.h
+       plugins/obs-ffmpeg/obs-ffmpeg-source.c
+Copyright: 2007, Alexey Vatchenko <av@bsdua.org>
+           1986, Gary S. Brown
+           2013-2017, Hugh Bailey <obs.jim@gmail.com>
+           2015, John R. Bradley <jrb@turrettech.com>
+           2013-2023, Ruwen Hahn <palana@stunned.de>
+           2017, Ryan Foster <RytoEX@gmail.com>
+License: ISC
+
+Files: plugins/obs-ffmpeg/obs-ffmpeg-rist.h
+ plugins/obs-ffmpeg/obs-ffmpeg-srt.h
+Copyright: 2022, pkv@obsproject.com
+License: ISC
+
+Files: plugins/decklink/decklink-device-instance.hpp
+Copyright: 2010-2011, Dmitry Vyukov.
+License: BSD-2-Clause-Views
+
+Files: plugins/obs-websocket/*
+Copyright: 2016-2021, Stephane Lepin <stephane.lepin@gmail.com>
+  2014, Leonhard Oelke <leonhard@in-verted.de>
+  2020-2023, Kyle Manning <tt2468@gmail.com>
+License: GPL-2+
+
+Files: UI/win-dll-blocklist.c
+Copyright: 2023, Richard Stanway
+License: GPL-2+
+
+Files: libobs/util/uthash.h
+ UI/ffmpeg-utils.?pp
+ plugins/obs-outputs/mp4-*
+Copyright: 2023, Dennis Sädtler <dennis@obsproject.com>
+License: GPL-2+
+
+Files: libobs/graphics/libnsgif/*
+Copyright: 2003, James Bursa <bursa@users.sourceforge.net>
+  2004, John Tytgat <John.Tytgat@aaug.net>
+  2004, Richard Wilson <richard.wilson@netsurf-browser.org>
+  2008, Sean Fox <dyntryx@gmail.com>
+License: Expat
+
+Files: UI/update/models/branches.hpp
+ UI/update/models/whatsnew.hpp
+ UI/win-update/updater/manifest.hpp
+Copyright: 2023, Dennis Sädtler <dennis@obsproject.com>
+License: ISC
+
+Files: UI/models/multitrack-video.hpp
+Copyright: 2024, Ruwen Hahn <haruwenz@twitch.tv>
+License: ISC
+
+Files: cmake/Modules/FindJack.cmake
+       cmake/Modules/FindX11_XCB.cmake
+       cmake/Modules/FindXCB.cmake
+       libobs/util/profiler.c
+       libobs/util/profiler.h
+       libobs/util/profiler.hpp
+Copyright: 2006, Alexander Chemeris
+           2008, Andreas Schneider <mail@cynapses.org>
+           2011, Fredrik Höglund <fredrik@kde.org>
+           2008, Helio Chissini de Castro <helio@kde.org>
+           2002-2014, Kitware, Inc
+           2013, Martin Gräßlin <mgraesslin@kde.org>
+           2007, Matthias Kretz <kretz@kde.org>
+License: BSD-3-clause
+
+Files: deps/glad/include/KHR/*
+Copyright: 2008-2009, The Khronos Group Inc
+License: Expat
+
+Files: deps/libcaption/*
+Copyright: 2016-2017, Twitch Interactive Inc. or its affiliates
+License: Expat
+
+Files: deps/w32-pthreads/*
+Copyright: 1998, Ben Elliston
+           1998, John E. Bossom
+           1999-2005, Pthreads-win32 contributors
+           1998-2001, Ross Johnson
+License: LGPL-2+
+
+Files: deps/w32-pthreads/tests/cancel6a.c
+       deps/w32-pthreads/tests/cancel6d.c
+       deps/w32-pthreads/tests/mutex8.c
+       deps/w32-pthreads/tests/mutex8e.c
+       deps/w32-pthreads/tests/mutex8n.c
+       deps/w32-pthreads/tests/mutex8r.c
+Copyright: 1998, Ben Elliston
+           1991-1999, Free Software Foundation, Inc
+           1998-2001, Ross Johnson
+License: LGPL-2.1+
+
+Files: plugins/decklink/linux/decklink-sdk/*
+       plugins/decklink/mac/decklink-sdk/*
+       plugins/decklink/win/decklink-sdk/*
+Copyright: 2009-2021, Blackmagic Design
+License: BSL
+
+Files: deps/happy-eyeballs/*
+Copyright: 2023, Twitch Interactive, Inc.
+License: Expat
+
+Files: plugins/obs-ffmpeg/vaapi-utils.*
+Copyright: 2022, tytan652 <tytan652@tytanium.xyz>
+License: GPL-2+
+
+Files: plugins/obs-outputs/librtmp/*
+Copyright: 2008-2009, Andrej Stepanchuk
+           2009-2010, Howard Chu
+           2005-2008, Team XBMC
+License: LGPL-2.1+
+Comment: Embedded copy of librtmp
+ Unfortunately it contains some OBS Studio specific patches.
+
+Files: plugins/obs-outputs/librtmp/md5.c
+       plugins/obs-outputs/librtmp/md5.h
+Copyright: none
+License: public-domain
+ This software was written by Alexander Peslyak in 2001.  No copyright is
+ claimed, and the software is hereby placed in the public domain.
+ In case this attempt to disclaim copyright and place the software in the
+ public domain is deemed null and void, then the software is
+ Copyright (c) 2001 Alexander Peslyak and it is hereby released to the
+ general public under the following terms:
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted.
+ .
+ There's ABSOLUTELY NO WARRANTY, express or implied.
+
+Files: plugins/obs-outputs/ftl-sdk/*
+Copyright: 2016, Mixer Interactive
+	   2015, Michael Casadevall
+License: Expat
+
+Files: debian/*
+Copyright: 2015, Carl Fürstenberg <azatoth@gmail.com>
+           2016-2022, Sebastian Ramacher <sramacher@debian.org>
+           2022-2024, IOhannes m zmölnig <umlaeute@debian.org>
+License: GPL-2+
+
+Files: debian/extra/qr/*
+Copyright: 2020, Project Nayuki.
+License: Expat
+
+
+
+
+License: BSD-1-Clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR
+ CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: BSD-2-Clause-Views
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE HOLDERS OR
+ CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ .
+ The views and conclusions contained in the software and documentation are
+ those of the authors and should not be interpreted as representing official
+ policies, either expressed or implied, of the copyright holders or
+ contributors.
+
+License: BSD-3-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
+ .
+   1. Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimer.
+ .
+   2. Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+ .
+   3. The name of the author may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+ EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: BSL
+ Permission is hereby granted, free of charge, to any person or organization
+ obtaining a copy of the software and accompanying documentation covered by
+ this license (the "Software") to use, reproduce, display, distribute,
+ execute, and transmit the Software, and to prepare derivative works of the
+ Software, and to permit third-parties to whom the Software is furnished to
+ do so, all subject to the following:
+ .
+ The copyright notices in the Software and this entire statement, including
+ the above license grant, this restriction and the following disclaimer,
+ must be included in all copies of the Software, in whole or in part, and
+ all derivative works of the Software, unless such copies or derivative
+ works are solely in the form of machine-executable object code generated by
+ a source language processor.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT
+ SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
+ FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
+ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ DEALINGS IN THE SOFTWARE.
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of this software and associated documentation files (the "Software"),
+ to deal in the Software without restriction, including without limitation
+ the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included
+ in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+License: ISC
+ Permission to use, copy, modify, and distribute this software for any
+ purpose with or without fee is hereby granted, provided that the above
+ copyright notice and this permission notice appear in all copies.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+License: LGPL-2+
+ This package is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU Lesser General
+ Public License can be found in "/usr/share/common-licenses/LGPL-2".
+
+License: LGPL-2.1+
+ This package is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU Lesser General
+ Public License can be found in "/usr/share/common-licenses/LGPL-2.1".

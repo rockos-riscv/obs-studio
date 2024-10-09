@@ -1,0 +1,19 @@
+version=4
+#opts="filenamemangle=s%(?:.*?)?v?(\d[\d.]*)\.tar\.gz%obs-studio-$1.tar.gz%,dversionmangle=s%\+dfsg\d*$%%,repacksuffix=+dfsg1" \
+#https://github.com/jp9000/obs-studio/tags (?:.*?/)?v?(\d[\d.]*)\.tar\.gz
+
+# check: uscan --report
+# update: gbp import-orig --upstream-vcs-tag=vX.Y.Z --uscan
+#opts=\
+#  filenamemangle=s/.*?(@ANY_VERSION@@ARCHIVE_EXT@)/@PACKAGE@-$1/,\
+#  repacksuffix=+dfsg,\
+#  uversionmangle=s/-?(alpha|beta|rc)/~$1/,\
+#  dversionmangle=auto \
+#	https://github.com/obsproject/obs-studio/tags \
+#	.*?@ANY_VERSION@@ARCHIVE_EXT@
+opts=searchmode=plain,\
+  repacksuffix=+dfsg,\
+  uversionmangle=s/-?(alpha|beta|rc)/~$1/,\
+  dversionmangle=auto \
+    https://api.github.com/repos/obsproject/obs-studio/releases?per_page=100 \
+    https://github.com/obsproject/obs-studio/releases/download/[^/]+/OBS-Studio-@ANY_VERSION@-Sources@ARCHIVE_EXT@

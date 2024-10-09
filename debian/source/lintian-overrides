@@ -1,0 +1,5 @@
+# this looks like a genuinely handcrafted HTML page
+# that includes an SVG-image
+source-is-missing [plugins/obs-browser/data/error.html]
+
+

@@ -1,0 +1,6 @@
+usr/include/*
+usr/lib/*/*.so
+usr/lib/*/cmake/libobs/*
+usr/lib/*/cmake/obs-frontend-api/*
+usr/lib/*/cmake/obs-websocket-api/*
+usr/lib/*/pkgconfig

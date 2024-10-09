@@ -1,0 +1,83 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/architecture.mk
+include /usr/share/dpkg/pkg-info.mk
+
+CONFIG=None
+
+export DEB_CPPFLAGS_MAINT_APPEND=-DFFMPEG_MUX_FIXED=\"/usr/lib/$(DEB_HOST_MULTIARCH)/obs-plugins/obs-ffmpeg/obs-ffmpeg-mux\"
+deb_cflags+=-DSIMDE_ENABLE_OPENMP -fopenmp-simd -O3 -fvisibility=hidden
+deb_cflags+=-Wno-error=deprecated-declarations
+
+confflags  =
+confflags += -G Ninja
+confflags += -DOBS_MULTIARCH_SUFFIX=/$(DEB_HOST_MULTIARCH)
+confflags += -DOBS_VERSION_OVERRIDE=$(subst +dfsg,.1,$(DEB_VERSION))
+confflags += -DAPPDATA_RELEASE_DATE=$(shell date --utc --date=@$${SOURCE_DATE_EPOCH} +'%Y-%m-%d')
+confflags += -DUNIX_STRUCTURE=TRUE
+confflags += -DCMAKE_SKIP_RPATH=TRUE
+confflags += -DDISABLE_UPDATE_MODULE=TRUE
+confflags += -DBUILD_TESTS=TRUE -DENABLE_UNIT_TESTS=TRUE
+confflags += -DENABLE_AJA=FALSE
+confflags += -DENABLE_BROWSER=FALSE
+confflags += -DENABLE_JACK=TRUE
+confflags += -DENABLE_PIPEWIRE=TRUE
+confflags += -DENABLE_SNDIO=FALSE
+confflags += -DENABLE_VST=FALSE
+confflags += -DENABLE_WEBRTC=FALSE
+
+ifeq ($(DEB_HOST_ARCH_CPU), i386)
+confflags += -DENABLE_SIMD=FALSE
+deb_cflags+=-Wno-error=psabi
+endif
+DEB_CFLAGS_MAINT_APPEND+=$(deb_cflags)
+DEB_CPPFLAGS_MAINT_APPEND+=$(deb_cflags)
+
+
+BUILDDIR=$(CURDIR)/obj-$(DEB_HOST_GNU_TYPE)
+%:
+	dh $@ --builddirectory=$(BUILDDIR)
+
+override_dh_auto_configure:
+	dh_auto_configure -- $(confflags)
+
+execute_before_dh_auto_build:
+	@echo 'blhc: ignore-line-regexp: .* -c /usr/share/cmake-[0-9.]*/Modules/CMakeCXXCompilerABI\.cpp .*'
+
+execute_after_dh_auto_build:
+	rst2man debian/obs.rst > debian/obs.1
+
+
+override_dh_auto_test:
+	LD_LIBRARY_PATH=$(BUILDDIR)/rundir/$(CONFIG)/lib/$(DEB_HOST_MULTIARCH) dh_auto_test
+
+execute_after_dh_auto_install:
+	-find debian/tmp -type f -name "*.pem" -exec chmod a-x {} +
+	mkdir -p debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/obs-plugins/obs-ffmpeg
+	mv debian/tmp/usr/bin/obs-ffmpeg-mux \
+		debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/obs-plugins/obs-ffmpeg/obs-ffmpeg-mux
+execute_after_dh_install:
+	rm -rf debian/obs-studio/usr/share/obs/obs-studio/license
+
+execute_before_dh_shlibdeps:
+	echo "libobs 0 libobs0t64 (= $(DEB_VERSION))" > debian/shlibs.local
+
+override_dh_python3:
+	dh_python3 -p obs-studio usr/share/obs/obs-plugins/frontend-tools/scripts
+	dh_python3 -p obs-studio usr/lib/$(DEB_HOST_MULTIARCH)/obs-scripting
+
+override_dh_gencontrol:
+	dh_gencontrol -- -Vsimde:Built-Using="$(shell dpkg-query -f '$${source:Package} (= $${source:Version}), ' -W "libsimde-dev")"
+
+################################################################
+DEB_COPYRIGHT_CHECK_IGNORE_REGEX = \
+	debian/.*|.*\.ttf|.*\.png|cmake/macos/resources/AppIcon.icns|cmake/macos/resources/background.tiff|UI/cmake/windows/obs-studio\.ico
+# licensecheck v1
+.PHONY: licensecheck
+licensecheck:
+	LANG=C.UTF-8 licensecheck \
+		-i "^($(DEB_COPYRIGHT_CHECK_IGNORE_REGEX))$$" \
+		--check '.*' --recursive --deb-machine --lines 0 * \
+		> debian/copyright_newhints
+	cmp debian/copyright_hints debian/copyright_newhints \
+		&& rm debian/copyright_newhints

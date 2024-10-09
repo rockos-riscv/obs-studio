@@ -1,0 +1,63 @@
+From: "Michael R. Crusoe" <michael.crusoe@gmail.com>
+Date: Mon, 27 Jul 2020 12:46:48 +0200
+Subject: Use the simd everywhere headers from libsimde-dev
+
+---
+ libobs/CMakeLists.txt     | 18 ------------------
+ libobs/cmake/legacy.cmake | 17 -----------------
+ libobs/util/sse-intrin.h  |  2 +-
+ 3 files changed, 1 insertion(+), 36 deletions(-)
+
+--- obs-studio.orig/libobs/CMakeLists.txt
++++ obs-studio/libobs/CMakeLists.txt
+@@ -145,24 +145,6 @@
+ target_sources(
+   libobs
+   PRIVATE # cmake-format: sortable
+-          util/simde/check.h
+-          util/simde/debug-trap.h
+-          util/simde/hedley.h
+-          util/simde/simde-align.h
+-          util/simde/simde-arch.h
+-          util/simde/simde-common.h
+-          util/simde/simde-constify.h
+-          util/simde/simde-detect-clang.h
+-          util/simde/simde-diagnostic.h
+-          util/simde/simde-features.h
+-          util/simde/simde-math.h
+-          util/simde/x86/mmx.h
+-          util/simde/x86/sse.h
+-          util/simde/x86/sse2.h)
+-
+-target_sources(
+-  libobs
+-  PRIVATE # cmake-format: sortable
+           callback/calldata.c
+           callback/calldata.h
+           callback/decl.c
+--- obs-studio.orig/libobs/cmake/legacy.cmake
++++ obs-studio/libobs/cmake/legacy.cmake
+@@ -76,23 +76,6 @@
+ 
+ target_sources(
+   libobs
+-  PRIVATE util/simde/check.h
+-          util/simde/debug-trap.h
+-          util/simde/hedley.h
+-          util/simde/simde-align.h
+-          util/simde/simde-arch.h
+-          util/simde/simde-common.h
+-          util/simde/simde-constify.h
+-          util/simde/simde-detect-clang.h
+-          util/simde/simde-diagnostic.h
+-          util/simde/simde-features.h
+-          util/simde/simde-math.h
+-          util/simde/x86/mmx.h
+-          util/simde/x86/sse2.h
+-          util/simde/x86/sse.h)
+-
+-target_sources(
+-  libobs
+   PRIVATE callback/calldata.c
+           callback/calldata.h
+           callback/decl.c

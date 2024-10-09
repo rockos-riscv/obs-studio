@@ -1,0 +1,16 @@
+0001-Use-common-license.patch
+0002-Hide-internal-symbols.patch
+0003-Use-path-in-usr-lib.patch
+0004-Add-flag-to-prevent-building-with-SIMD.patch
+0005-Use-the-simd-everywhere-headers-from-libsimde-dev.patch
+0006-Do-not-build-unused-blake2-dependency.patch
+0007-Disable-obs-browser-check.patch
+0009-Fix-spelling-mistakes.patch
+0010-Drop-code-that-makes-build-unreproducible.patch
+0010-Don-t-treat-warnings-as-errors.patch
+0011-Fix-FTBFS-on-32bit-archs.patch
+0012-Prevent-underlinking.patch
+Fix-comparison-if-char-is-unsigned.patch
+0014-disable-dropped-modules.patch
+Use-time64_t-everywhere.patch
+linux-v4l2-Save-device-by-id-or-path.patch

@@ -1,0 +1,19 @@
+From: Sebastian Ramacher <sramacher@debian.org>
+Date: Sat, 3 Sep 2022 20:08:34 +0200
+Subject: Disable obs-browser check
+
+---
+ plugins/CMakeLists.txt | 2 --
+ 1 file changed, 2 deletions(-)
+
+--- obs-studio.orig/plugins/CMakeLists.txt
++++ obs-studio/plugins/CMakeLists.txt
+@@ -15,7 +15,7 @@
+        OR OS_MACOS
+        OR OS_LINUX)
+       if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/obs-browser/CMakeLists.txt")
+-        message(FATAL_ERROR "Required submodule 'obs-browser' not available.")
++        message(WARNING "Required submodule 'obs-browser' not available.")
+       else()
+         add_subdirectory(obs-browser)
+       endif()

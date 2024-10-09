@@ -1,0 +1,44 @@
+Since version 26.1.0+dfsg1-1, obs(1) has support for Virtual Camera output. This
+means that it can not only stream or record but also send the video to a
+loopback video device (/dev/videoXX) which can then be used like a "real" webcam
+in video applications or WebRTC video conference software.
+
+For the Virtual Camera support the v4l2loopback-dkms package needs to be
+installed. In theory this is enough to add a "Start Virtual Camera" button to
+the interface; in practice things can go wrong, or you might want to have more
+control over the whole process.
+
+In general, if the feature doesn't work, start obs(1) in a terminal, and it will
+output helpful diagnostic messages.
+
+The feature is only enabled when obs(1) finds the v4l2loopback kernel module
+installed at startup time. This should be guaranteed by having the
+v4l2loopback-dkms package installed. If the kernel module is not loaded, obs(1)
+will try to do so. For that purpose it uses pkexec(1) from the policykit-1
+package.
+
+But you can also load the module yourself, with root privileges:
+- Manually once with
+
+    modprobe v4l2loopback exclusive_caps=1 card_label='OBS Virtual Camera'
+
+- Or you can add 'v4l2loopback' to /etc/modules and options v4l2loopback
+  exclusive_caps=1 card_label='OBS Virtual Camera' to a file like
+  /etc/modprobe.d/v4l2loopback.conf, then the module will be loaded at boottime.
+
+When you want to control which device is created, you can add e.g.
+
+  video_nr=17
+
+to the module options, which will create a /dev/video17 device.
+
+obs(1) will always output to the first loopback video device it finds (this
+might become configurable in the future). So if you have more than one for other
+purposes make sure to list the one for obs(1) first in the module options, e.g.
+
+  options v4l2loopback devices=2 video_nr=23,42 card_label="OBS Virtual Camera,Some Other Cam" exclusive_caps=1,1
+
+This will create /dev/video23 and /dev/video42 and give them nice labels, and
+obs(1) will use the first one with the correct name.
+
+(Cf. also /usr/share/doc/v4l2loopback-dkms/README.md.gz)

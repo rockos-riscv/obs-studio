@@ -1,0 +1,22 @@
+From: Gianfranco Costamagna <locutusofborg@debian.org>
+Date: Fri, 22 Mar 2024 13:31:42 +0100
+Subject: Use time64_t everywhere
+
+---
+ plugins/linux-v4l2/v4l2-input.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+--- obs-studio.orig/plugins/linux-v4l2/v4l2-input.c
++++ obs-studio/plugins/linux-v4l2/v4l2-input.c
+@@ -260,7 +260,11 @@
+ 		}
+ 
+ 		blog(LOG_DEBUG,
++#ifndef __arm__
+ 		     "%s: ts: %06ld buf id #%d, flags 0x%08X, seq #%d, len %d, used %d",
++#else
++		     "%s: ts: %06lld buf id #%d, flags 0x%08X, seq #%d, len %d, used %d",
++#endif
+ 		     data->device_id, buf.timestamp.tv_usec, buf.index,
+ 		     buf.flags, buf.sequence, buf.length, buf.bytesused);
+ 

@@ -1,0 +1,3 @@
+debian/shlibs.local
+debian/obs.1
+cmake/.CMakeBuildNumber

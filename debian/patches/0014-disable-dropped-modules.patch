@@ -1,0 +1,28 @@
+Description: Drop modules that have been excluded during repacking
+ - obs-qsv11
+Author: IOhannes m zmölnig <umlaeute@debian.org>
+Origin: Debian
+Forwarded: not-needed
+Last-Update: 2023-12-04
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- obs-studio.orig/plugins/CMakeLists.txt
++++ obs-studio/plugins/CMakeLists.txt
+@@ -86,7 +86,7 @@
+   if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/obs-browser/CMakeLists.txt)
+     add_subdirectory(obs-browser)
+   else()
+-    obs_status(FATAL_ERROR "obs-browser submodule not available.")
++    obs_status(WARNING "obs-browser submodule not available.")
+   endif()
+ endfunction()
+ 
+@@ -127,7 +127,7 @@
+   add_subdirectory(vlc-video)
+   add_subdirectory(sndio)
+   add_subdirectory(obs-vst)
+-  add_subdirectory(obs-qsv11)
++  #add_subdirectory(obs-qsv11)
+ 
+   check_obs_browser()
+ elseif(OS_FREEBSD)

@@ -1,0 +1,30 @@
+From: =?utf-8?q?Carl_F=C3=BCrstenberg?= <azatoth@gmail.com>
+Date: Tue, 6 Jan 2015 23:12:30 +0100
+Subject: Use common license
+
+use common license at /usr/share/common-licenses instead of the shipped
+copy
+---
+ UI/window-basic-about.cpp | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
+
+--- obs-studio.orig/UI/window-basic-about.cpp
++++ obs-studio/UI/window-basic-about.cpp
+@@ -161,16 +161,11 @@
+ 
+ void OBSAbout::ShowLicense()
+ {
+-	std::string path;
++	std::string path("/usr/share/common-licenses/GPL-2");
+ 	QString error =
+ 		QTStr("About.Error")
+ 			.arg("https://github.com/obsproject/obs-studio/blob/master/COPYING");
+ 
+-	if (!GetDataFilePath("license/gplv2.txt", path)) {
+-		ui->textBrowser->setPlainText(error);
+-		return;
+-	}
+-
+ 	BPtr<char> text = os_quick_read_utf8_file(path.c_str());
+ 
+ 	if (!text || !*text) {

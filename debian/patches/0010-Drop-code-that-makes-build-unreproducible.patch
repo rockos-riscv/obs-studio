@@ -1,0 +1,24 @@
+From: =?utf-8?q?=22IOhannes_m_zm=C3=B6lnig_=28Debian/GNU=29=22?=
+ <umlaeute@debian.org>
+Date: Fri, 23 Sep 2022 20:40:26 +0200
+Subject: Drop code that makes build unreproducible
+
+Notably, the FILE_LINE macro embeds the full path in the scripting wrappers
+
+Origin: Debian
+Forwarded: not-needed
+Last-Update: 2022-09-20
+---
+ libobs/util/base.h | 1 -
+ 1 file changed, 1 deletion(-)
+
+--- obs-studio.orig/libobs/util/base.h
++++ obs-studio/libobs/util/base.h
+@@ -33,7 +33,6 @@
+ #define S__LINE__ STRINGIFY_(__LINE__)
+ 
+ #define INT_CUR_LINE __LINE__
+-#define FILE_LINE __FILE__ " (" S__LINE__ "): "
+ 
+ #define OBS_COUNTOF(x) (sizeof(x) / sizeof(x[0]))
+ 
