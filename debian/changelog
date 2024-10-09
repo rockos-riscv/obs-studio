@@ -1,3 +1,9 @@
+obs-studio (30.2.3+dfsg-2rockos1) unstable; urgency=medium
+
+  * Apply rockos patchset
+
+ -- Han Gao <rabenda.cn@gmail.com>  Wed, 09 Oct 2024 22:04:25 +0800
+
 obs-studio (30.2.3+dfsg-2) unstable; urgency=medium
 
   * Team upload.
