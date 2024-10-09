@@ -47,6 +47,10 @@ extern struct obs_encoder_info hevc_nvenc_encoder_info;
 #endif
 extern struct obs_encoder_info svt_av1_encoder_info;
 extern struct obs_encoder_info aom_av1_encoder_info;
+extern struct obs_encoder_info h264_esmpp_encoder_info;
+#ifdef ENABLE_HEVC
+extern struct obs_encoder_info hevc_esmpp_encoder_info;
+#endif
 
 #ifdef LIBAVUTIL_VAAPI_AVAILABLE
 extern struct obs_encoder_info h264_vaapi_encoder_info;
@@ -375,6 +379,10 @@ bool obs_module_load(void)
 	obs_register_encoder(&pcm32_encoder_info);
 	obs_register_encoder(&alac_encoder_info);
 	obs_register_encoder(&flac_encoder_info);
+	obs_register_encoder(&h264_esmpp_encoder_info);
+#ifdef ENABLE_HEVC
+	obs_register_encoder(&hevc_esmpp_encoder_info);
+#endif
 #ifndef __APPLE__
 	bool h264 = false;
 	bool hevc = false;

@@ -31,6 +31,7 @@ target_sources(
           $<$<PLATFORM_ID:Windows>:texture-amf.cpp>
           obs-ffmpeg-audio-encoders.c
           obs-ffmpeg-av1.c
+          obs-ffmpeg-esmpp.c
           obs-ffmpeg-compat.h
           obs-ffmpeg-formats.h
           obs-ffmpeg-hls-mux.c
