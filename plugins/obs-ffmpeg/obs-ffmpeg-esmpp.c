@@ -243,9 +243,19 @@ fail:
 	return NULL;
 }
 
-static void *esmpp_create(obs_data_t *settings, obs_encoder_t *encoder)
+static void *h264_esmpp_create(obs_data_t *settings, obs_encoder_t *encoder)
 {
 	void *enc = esmpp_create_internal(settings, encoder, false);
+	if ((enc == NULL)) {
+		blog(LOG_ERROR, "[ESMPP encoder] esmpp_create_internal failed");
+	}
+	blog(LOG_INFO, "esmpp_create %s", enc ? "success" : "fail");
+	return enc;
+}
+
+static void *hevc_esmpp_create(obs_data_t *settings, obs_encoder_t *encoder)
+{
+	void *enc = esmpp_create_internal(settings, encoder, true);
 	if ((enc == NULL)) {
 		blog(LOG_ERROR, "[ESMPP encoder] esmpp_create_internal failed");
 	}
@@ -397,7 +407,7 @@ struct obs_encoder_info h264_esmpp_encoder_info = {
 	.type = OBS_ENCODER_VIDEO,
 	.codec = "h264",
 	.get_name = h264_esmpp_getname,
-	.create = esmpp_create,
+	.create = h264_esmpp_create,
 	.destroy = esmpp_destroy,
 	.encode = esmpp_encode,
 	.get_defaults = h264_esmpp_defaults,
@@ -412,7 +422,7 @@ struct obs_encoder_info hevc_esmpp_encoder_info = {
 	.type = OBS_ENCODER_VIDEO,
 	.codec = "hevc",
 	.get_name = hevc_esmpp_getname,
-	.create = esmpp_create,
+	.create = hevc_esmpp_create,
 	.destroy = esmpp_destroy,
 	.encode = esmpp_encode,
 	.get_defaults = hevc_esmpp_defaults,
