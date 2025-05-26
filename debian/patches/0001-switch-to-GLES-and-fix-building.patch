@@ -1,7 +1,7 @@
 From 71811ed22d8280aa8a8af923006316b77291dd90 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 27 Jun 2024 16:04:40 +0800
-Subject: [PATCH 1/9] switch to GLES and fix building
+Subject: [PATCH 01/10] switch to GLES and fix building
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
@@ -31496,5 +31496,5 @@ index cbe644943..bafb70549 100644
  
  	pw_init(NULL, NULL);
 -- 
-2.40.1
+2.45.2
 

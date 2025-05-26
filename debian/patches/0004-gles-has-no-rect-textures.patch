@@ -1,7 +1,7 @@
 From c13178ae4dd3d050b51be44dd1c9af4cc8071892 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 27 Jun 2024 20:32:39 +0800
-Subject: [PATCH 4/9] gles has no rect textures
+Subject: [PATCH 04/10] gles has no rect textures
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
@@ -31,5 +31,5 @@ index 46b37b4b9..3575844bc 100644
  
  void *gs_texture_get_obj(gs_texture_t *tex)
 -- 
-2.40.1
+2.45.2
 

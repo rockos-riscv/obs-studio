@@ -1,7 +1,7 @@
 From 0a627f7f8ed52f44bf73f4a7bcf8b1ca4ce95411 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 28 Jun 2024 11:28:09 +0800
-Subject: [PATCH 6/9] lower EXT_texture_norm16 to warning.
+Subject: [PATCH 06/10] lower EXT_texture_norm16 to warning.
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
@@ -25,5 +25,5 @@ index 5afb82316..d2419a40b 100644
  
  	if (!GLAD_GL_EXT_disjoint_timer_query) {
 -- 
-2.40.1
+2.45.2
 

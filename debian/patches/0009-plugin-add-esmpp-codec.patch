@@ -1,7 +1,7 @@
 From d678a687227ca6f0e632db4887749ab51e86d566 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 9 Oct 2024 21:53:07 +0800
-Subject: [PATCH 9/9] plugin: add esmpp codec
+Subject: [PATCH 09/10] plugin: add esmpp codec
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---
@@ -493,5 +493,5 @@ index c20281f63..94e56e480 100644
  	bool h264 = false;
  	bool hevc = false;
 -- 
-2.40.1
+2.45.2
 

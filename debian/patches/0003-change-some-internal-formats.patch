@@ -1,7 +1,7 @@
 From 46447d9b61175bb80fdeb50d0a11d40919b5f885 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 27 Jun 2024 19:03:56 +0800
-Subject: [PATCH 3/9] change some internal formats
+Subject: [PATCH 03/10] change some internal formats
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
@@ -25,5 +25,5 @@ index f2cbf8351..bfd099563 100644
  		return GL_RGB10_A2;
  	case GS_RGBA16:
 -- 
-2.40.1
+2.45.2
 

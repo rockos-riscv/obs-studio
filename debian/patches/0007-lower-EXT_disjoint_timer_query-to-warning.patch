@@ -1,7 +1,7 @@
 From e71777cbb5c2079848cc83f0d314caaa7ee3bf13 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 28 Jun 2024 11:30:39 +0800
-Subject: [PATCH 7/9] lower EXT_disjoint_timer_query to warning
+Subject: [PATCH 07/10] lower EXT_disjoint_timer_query to warning
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
@@ -25,5 +25,5 @@ index d2419a40b..4dbffca17 100644
  
  	if (!GLAD_GL_OES_mapbuffer) {
 -- 
-2.40.1
+2.45.2
 

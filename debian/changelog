@@ -1,3 +1,9 @@
+obs-studio (30.2.3+dfsg-2rockos2) unstable; urgency=medium
+
+  * fix eic770x encoder
+
+ -- Han Gao <rabenda.cn@gmail.com>  Tue, 27 May 2025 01:42:11 +0800
+
 obs-studio (30.2.3+dfsg-2rockos1) unstable; urgency=medium
 
   * Apply rockos patchset

@@ -1,7 +1,8 @@
 From 202f79cc4e77509743cdfa94783274a68b8f452f Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 28 Jun 2024 12:36:29 +0800
-Subject: [PATCH 8/9] fix glMapBufferOES when reading (which is not supported)
+Subject: [PATCH 08/10] fix glMapBufferOES when reading (which is not
+ supported)
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
@@ -52,5 +53,5 @@ index 994c10853..c23d5186f 100644
  	gl_bind_buffer(GL_PIXEL_PACK_BUFFER, 0);
  }
 -- 
-2.40.1
+2.45.2
 

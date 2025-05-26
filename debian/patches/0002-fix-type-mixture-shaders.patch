@@ -1,7 +1,7 @@
 From 5395b511c7d4417dc3ae6f7cd62b01c67bfb384f Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 27 Jun 2024 16:05:23 +0800
-Subject: [PATCH 2/9] fix type mixture shaders
+Subject: [PATCH 02/10] fix type mixture shaders
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
@@ -76,5 +76,5 @@ index 6d1088c75..8119b0f56 100644
  	float3 hdr2020 = hlg_to_linear(hlg, hlg_exponent) * maximum_over_sdr_white_nits;
  	float3 rgb = rec2020_to_rec709(hdr2020);
 -- 
-2.40.1
+2.45.2
 

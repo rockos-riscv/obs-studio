@@ -25,3 +25,4 @@ linux-v4l2-Save-device-by-id-or-path.patch
 0007-lower-EXT_disjoint_timer_query-to-warning.patch
 0008-fix-glMapBufferOES-when-reading-which-is-not-support.patch
 0009-plugin-add-esmpp-codec.patch
+0010-fix-esmpp-codec.patch

@@ -1,0 +1,68 @@
+From c4fa4141dba2accc9a715ed45fb4f9d3cd259061 Mon Sep 17 00:00:00 2001
+From: Han Gao <rabenda.cn@gmail.com>
+Date: Tue, 27 May 2025 01:39:46 +0800
+Subject: [PATCH 10/10] fix esmpp codec
+
+Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+---
+ plugins/obs-ffmpeg/obs-ffmpeg-esmpp.c | 18 ++++++++++++++----
+ 1 file changed, 14 insertions(+), 4 deletions(-)
+
+diff --git a/plugins/obs-ffmpeg/obs-ffmpeg-esmpp.c b/plugins/obs-ffmpeg/obs-ffmpeg-esmpp.c
+index 8a36ddfce..8d3bb11b8 100644
+--- a/plugins/obs-ffmpeg/obs-ffmpeg-esmpp.c
++++ b/plugins/obs-ffmpeg/obs-ffmpeg-esmpp.c
+@@ -243,7 +243,7 @@ fail:
+ 	return NULL;
+ }
+ 
+-static void *esmpp_create(obs_data_t *settings, obs_encoder_t *encoder)
++static void *h264_esmpp_create(obs_data_t *settings, obs_encoder_t *encoder)
+ {
+ 	void *enc = esmpp_create_internal(settings, encoder, false);
+ 	if ((enc == NULL)) {
+@@ -253,6 +253,16 @@ static void *esmpp_create(obs_data_t *settings, obs_encoder_t *encoder)
+ 	return enc;
+ }
+ 
++static void *hevc_esmpp_create(obs_data_t *settings, obs_encoder_t *encoder)
++{
++	void *enc = esmpp_create_internal(settings, encoder, true);
++	if ((enc == NULL)) {
++		blog(LOG_ERROR, "[ESMPP encoder] esmpp_create_internal failed");
++	}
++	blog(LOG_INFO, "esmpp_create %s", enc ? "success" : "fail");
++	return enc;
++}
++
+ static bool esmpp_encode(void *data, struct encoder_frame *frame,
+ 			 struct encoder_packet *packet, bool *received_packet)
+ {
+@@ -397,7 +407,7 @@ struct obs_encoder_info h264_esmpp_encoder_info = {
+ 	.type = OBS_ENCODER_VIDEO,
+ 	.codec = "h264",
+ 	.get_name = h264_esmpp_getname,
+-	.create = esmpp_create,
++	.create = h264_esmpp_create,
+ 	.destroy = esmpp_destroy,
+ 	.encode = esmpp_encode,
+ 	.get_defaults = h264_esmpp_defaults,
+@@ -412,7 +422,7 @@ struct obs_encoder_info hevc_esmpp_encoder_info = {
+ 	.type = OBS_ENCODER_VIDEO,
+ 	.codec = "hevc",
+ 	.get_name = hevc_esmpp_getname,
+-	.create = esmpp_create,
++	.create = hevc_esmpp_create,
+ 	.destroy = esmpp_destroy,
+ 	.encode = esmpp_encode,
+ 	.get_defaults = hevc_esmpp_defaults,
+@@ -420,4 +430,4 @@ struct obs_encoder_info hevc_esmpp_encoder_info = {
+ 	.get_extra_data = esmpp_extra_data,
+ 	.get_video_info = esmpp_video_info,
+ };
+-#endif
+\ No newline at end of file
++#endif
+-- 
+2.45.2
+

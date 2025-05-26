@@ -1,7 +1,7 @@
 From 2cd330c59e6b927ea37f192872ec8ee8d913d825 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 27 Jun 2024 21:32:53 +0800
-Subject: [PATCH 5/9] explicitly return 1 as alpha for all conversion shaders
+Subject: [PATCH 05/10] explicitly return 1 as alpha for all conversion shaders
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---
@@ -178,5 +178,5 @@ index 8119b0f56..3b3b3478d 100644
  
  float3 compute_r10l_reverse(float2 pos, bool limited)
 -- 
-2.40.1
+2.45.2
 
